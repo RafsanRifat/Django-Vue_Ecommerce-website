@@ -53,3 +53,16 @@ class Product(models.Model):
                 return 'http://127.0.0.1:8000' + self.thumbnail.url
             else:
                 return ''
+
+
+
+    def make_thumbnai(self, image, size=(300, 200)):
+        img = Image.open(image)
+        img.convert('RGB')
+        img.thumbnail(size)
+
+        thumb_io = BytesIO()
+        img.save(thumb_io, 'JPEG', quality=85)
+        thumbnail = File(thumb_io, name=image.name)
+
+        return thumbnail
