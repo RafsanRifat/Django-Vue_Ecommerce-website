@@ -55,8 +55,6 @@ class Product(models.Model):
             else:
                 return ''
 
-
-
     def make_thumbnail(self, image, size=(300, 200)):
         img = Image.open(image)
         img.convert('RGB')
@@ -68,3 +66,16 @@ class Product(models.Model):
         thumbnail = File(thumb_io, name=image.name)
 
         return thumbnail
+
+
+class Customer(models.Model):
+    name = models.CharField(max_length=250)
+    phone = models.CharField(max_length=15)
+    email = models.EmailField(max_length=50)
+    address = models.CharField(max_length=300)
+
+    class Meta:
+        ordering = ('name',)
+
+    def __str__(self):
+        return self.name
