@@ -16,12 +16,12 @@
         <h2 class="is-size-2 has-text-centered">Latest Products</h2>
       </div>
 
-      <div  class="column is-3 " v-for="product in latestProducts" v-bind:key="product.id">
+      <div class="column is-3 " v-for="product in latestProducts" v-bind:key="product.id">
         <div style="height: 100%" class="box">
           <figure class="image mb-4">
             <img :src="product.get_thumbnail" alt="">
           </figure>
-          <h3 class="is-size-4">{{product.name}}</h3>
+          <h3 class="is-size-4">{{ product.name }}</h3>
           <p class="is-size-6 has-text-grey">${{ product.price }}</p>
 
           view details
@@ -38,28 +38,35 @@ import axios from 'axios'
 
 export default {
   name: 'HomeView',
-  components: {
-
-  },
-  data(){
-    return{
+  components: {},
+  data() {
+    return {
       latestProducts: []
     }
   },
-  mounted(){
+  mounted() {
     this.getLatestProducts()
   },
   methods: {
-    getLatestProducts(){
+    getLatestProducts() {
       axios
-      .get('http://localhost:8000/api/v1/latest-products/')
-      .then(res => {
-        this.latestProducts = res.data
-      })
-      .catch( err => {
-        console.log(err)
-      })
+          .get('/api/v1/latest-products/')
+          .then(res => {
+            console.log(res)
+            this.latestProducts = res.data
+          })
+          .catch(err => {
+            console.log(err)
+          })
     }
   }
 }
 </script>
+
+<style scoped>
+  .image{
+    margin-top: -1.25rem;
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+  }
+</style>
