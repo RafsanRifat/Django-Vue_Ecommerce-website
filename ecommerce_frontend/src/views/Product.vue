@@ -37,7 +37,7 @@ import axios from "axios";
 
 export default {
   name: 'product',
-  deta() {
+  data() {
     return {
       product: {},
       quantity: 1
