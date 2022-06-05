@@ -1,33 +1,33 @@
 <template>
-    <div class="page-product">
-        <div class="columns is-multiline">
-            <div class="column is-9">
-                <figure class="image mb-6">
-                    <img v-bind:src="product.get_image">
-                </figure>
+  <div class="page-product">
+    <div class="columns is-multiline">
+      <div class="column is-9">
+        <figure class="image mb-6">
+          <img v-bind:src="product.get_image">
+        </figure>
 
-                <h1 class="title">{{ product.name }}</h1>
+        <h1 class="title">{{ product.name }}</h1>
 
-                <p>{{ product.description }}</p>
-            </div>
+        <p>{{ product.description }}</p>
+      </div>
 
-            <div class="column is-3">
-                <h2 class="subtitle">Information</h2>
+      <div class="column is-3">
+        <h2 class="subtitle">Information</h2>
 
-                <p><strong>Price: </strong>${{ product.price }}</p>
+        <p><strong>Price: </strong>${{ product.price }}</p>
 
-                <div class="field has-addons mt-6">
-                    <div class="control">
-                        <input type="number" class="input" min="1" v-model="quantity">
-                    </div>
+        <div class="field has-addons mt-6">
+          <div class="control">
+            <input type="number" class="input" min="1" v-model="quantity">
+          </div>
 
-                    <div class="control">
-                        <a class="button is-dark" @click="addToCart()">Add to cart</a>
-                    </div>
-                </div>
-            </div>
+          <div class="control">
+            <a class="button is-dark" @click="addToCart()">Add to cart</a>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </template>
 
 
@@ -52,13 +52,23 @@ export default {
       const product_slug = this.$route.params.product_slug
 
       axios
-      .get(`api/v1/products/${category_slug}/${product_slug}`)
-      .then(response => {
-        this.product = response.data
-      })
-      .catch(error => {
-        console.log(error)
-      })
+          .get(`api/v1/products/${category_slug}/${product_slug}`)
+          .then(response => {
+            this.product = response.data
+          })
+          .catch(error => {
+            console.log(error)
+          })
+    },
+    addToCart() {
+      if (isNaN(this.quantity) || this.quantity < 1) {
+        this.quantity = 1
+      }
+      const item = {
+        product: this.product,
+        quantity: this.quantity
+      }
+      this.$store.commit('addToCart', item)
     }
   }
 }
