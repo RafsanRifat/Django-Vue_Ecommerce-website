@@ -34,6 +34,7 @@
 <script>
 
 import axios from "axios";
+import {toast} from 'bulma-toast'
 
 export default {
   name: 'product',
@@ -69,6 +70,15 @@ export default {
         quantity: this.quantity
       }
       this.$store.commit('addToCart', item)
+
+      toast({
+        message: 'The product was added to the cart',
+        type: 'is-success',
+        dismissible: true,
+        pauseOnHover: true,
+        duration: 600,
+        position: 'bottom-right',
+      })
     }
   }
 }

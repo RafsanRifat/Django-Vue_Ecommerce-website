@@ -1,4 +1,5 @@
 <template>
+  {{ product }}
   <div class="home">
     <section class="hero is-medium is-dark mb-6">
       <div class="hero-body has-text-centered">
@@ -52,7 +53,7 @@ export default {
       axios
           .get('/api/v1/latest-products/')
           .then(res => {
-            console.log(res)
+            // console.log(res)
             this.latestProducts = res.data
           })
           .catch(err => {
@@ -64,9 +65,9 @@ export default {
 </script>
 
 <style scoped>
-  .image{
-    margin-top: -1.25rem;
-    margin-left: -1.25rem;
-    margin-right: -1.25rem;
-  }
+.image {
+  margin-top: -1.25rem;
+  margin-left: -1.25rem;
+  margin-right: -1.25rem;
+}
 </style>
