@@ -25,3 +25,16 @@ class CustomerSerializer(serializers.ModelSerializer):
             'phone',
             'address'
         ]
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    products = ProductSerializer(many=True)
+
+    class Meta:
+        model = Category
+        fields = [
+            'id',
+            'name',
+            'get_absolute_url',
+            'products'
+        ]
