@@ -75,14 +75,17 @@ export default {
   margin-left: -1.25rem;
   margin-right: -1.25rem;
 }
-.box{
+
+.box {
   display: flex;
   flex-direction: column;
 }
-.product-image{
+
+.product-image {
   flex: 70%;
 }
-.product-desc{
+
+.product-desc {
   flex: 30%;
 }
 
