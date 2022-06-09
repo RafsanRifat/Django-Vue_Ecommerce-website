@@ -46,7 +46,7 @@ export default {
 
     getCategory() {
       const categorySlug = this.$route.params.category_slug
-      console.log(categorySlug)
+      // console.log(categorySlug)
 
       axios
           .get(`/api/v1/products/${categorySlug}`)
